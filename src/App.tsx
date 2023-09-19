@@ -4,6 +4,7 @@ import HomePage from "./app/home/page";
 import RegisterPage from "./app/register/page";
 import LoginPage from "./app/login/page";
 
+
 function App() {
   return (
     <Routes>
