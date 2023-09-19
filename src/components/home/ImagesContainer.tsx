@@ -6,6 +6,8 @@ type Props = {
 
 export default function ImagesContainer({ children }: Props) {
   return (
-    <div className="grid  md:grid-cols-2 justify-items-center lg:grid-cols-3 xl:grid-cols-4 gap-4 w-[95%] mx-auto ">{children}</div>
+    <div className="grid  grid-cols-2 justify-items-center md:grid-cols-3 max-w-[1280px]  gap-4 w-[95%] mx-auto ">
+      {children}
+    </div>
   );
 }
