@@ -51,7 +51,6 @@ export default function Image({
         </div>
       )}
       <img
-        loading="lazy"
         src={src}
         alt={alt}
         data-id={index}
