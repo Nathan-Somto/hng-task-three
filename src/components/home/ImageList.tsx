@@ -25,6 +25,7 @@ type ImageListProps = {
               key={id}
               id={id}
               dragId={dragId}
+              forOverlay={false}
               setLightBoxState={setLightBoxState}
             />
           ))}

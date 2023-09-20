@@ -113,6 +113,7 @@ export default function HomePage() {
                 alt="preview"
                 index={originalIndexes[dragId]}
                 setLightBoxState={setLightBoxState}
+                forOverlay
               />
             ) : null}
           </DragOverlay>
