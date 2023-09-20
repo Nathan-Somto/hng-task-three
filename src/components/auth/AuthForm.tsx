@@ -41,7 +41,7 @@ function Authform({text, forRegister}: Props) {
           dispatch(setUser({user:result.user}));
           navigate('/');
         }catch(err){
-          toast.error((err as Error)?.message)
+          toast.error(`failed to ${text} user`)
           console.error((err as Error)?.message)
         }finally{
           setLoading(false)

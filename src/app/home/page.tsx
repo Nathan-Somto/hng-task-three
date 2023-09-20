@@ -22,10 +22,8 @@ import {
   DragStartEvent,
   DragOverlay,
 } from "@dnd-kit/core";
-import {
-  SortableContext,
-  rectSwappingStrategy,
-} from "@dnd-kit/sortable";
+import { SortableContext, rectSwappingStrategy } from "@dnd-kit/sortable";
+import ImageList from "../../components/home/ImageList";
 export type LightBoxState = {
   currIndex: number;
   show: boolean;
@@ -57,12 +55,7 @@ export default function HomePage() {
         distance: 10,
       },
     }),
-    useSensor(TouchSensor, {
-      activationConstraint: {
-        delay: 100,
-        tolerance: 5
-      },
-    }),
+    useSensor(TouchSensor),
     useSensor(KeyboardSensor)
   );
   function handleDragEnd(event: DragEndEvent) {
@@ -83,6 +76,9 @@ export default function HomePage() {
 
     setDragId(active.id as string);
   }
+  function handleDragCancel() {
+    setDragId(-1);
+  }
   return (
     <>
       <Navbar setTag={setTag} tag={tag} />
@@ -96,35 +92,28 @@ export default function HomePage() {
           sensors={sensors}
           onDragEnd={handleDragEnd}
           onDragStart={handleDragStart}
+          onDragCancel={handleDragCancel}
         >
-          <SortableContext
-            items={images}
-            strategy={rectSwappingStrategy}
-          >
+          <SortableContext items={images} strategy={rectSwappingStrategy}>
             <ImagesContainer>
-              {filteredImages.map(({ id, tag, url }) => (
-                <Image
-                  alt="gallery image"
-                  index={originalIndexes[id]}
-                  src={url}
-                  tag={tag}
-                  key={id}
-                  id={id}
-                  dragId={dragId}
-                  setLightBoxState={setLightBoxState}
-                />
-              ))}
+              <ImageList
+                filteredImages={filteredImages}
+                dragId={dragId}
+                setLightBoxState={setLightBoxState}
+                originalIndexes={originalIndexes}
+              />
             </ImagesContainer>
           </SortableContext>
-          <DragOverlay>
+          <DragOverlay adjustScale style={{ transformOrigin: "0 0" }}>
             {dragId !== -1 ? (
               <Image
-              dragId={dragId} 
-              {...images[originalIndexes[dragId]]}
-              src={images[originalIndexes[dragId]].url}
-              alt="preview"
-              index={originalIndexes[dragId]}
-              setLightBoxState={setLightBoxState}/>
+                dragId={dragId}
+                {...images[originalIndexes[dragId]]}
+                src={images[originalIndexes[dragId]].url}
+                alt="preview"
+                index={originalIndexes[dragId]}
+                setLightBoxState={setLightBoxState}
+              />
             ) : null}
           </DragOverlay>
         </DndContext>

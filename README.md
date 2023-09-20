@@ -32,3 +32,15 @@ Follow these steps to get the project up and running on your local machine.
 ```bash
    $ npm run dev
 ```
+
+5. see the live app on your browser
+```bash
+   $ server started on http://localhost:5173
+```
+6. Login into App
+
+ - ***Use Test credentials***
+- Email : user@example.com
+- Password: 1Password
+
+Enjoy Dragging and Dropping 
