@@ -59,9 +59,8 @@ export default function HomePage() {
     }),
     useSensor(TouchSensor, {
       activationConstraint: {
-        delay: 150,
-        tolerance: 5,
-        distance:10
+        delay: 100,
+        tolerance: 5
       },
     }),
     useSensor(KeyboardSensor)

@@ -1,17 +1,29 @@
 import { Dispatch, SetStateAction } from "react";
 import { FaCamera, FaSearch } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/user/userSlice";
+import { auth } from "../../config/firebase";
+import { signOut } from "firebase/auth";
+import { toast } from "react-toastify";
+
 type Props = {
   setTag: Dispatch<SetStateAction<string>>;
-  tag:string;
+  tag: string;
 };
-export default function Navbar({ setTag,tag }: Props) {
-  
+export default function Navbar({ setTag, tag }: Props) {
+  const dispatch = useDispatch();
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    
     setTag(e.target.value);
   }
- 
- 
+  async function handleLogout() {
+    try {
+      await signOut(auth);
+      dispatch(setUser({ user: null }));
+    } catch (err) {
+      toast.error("failed to logout");
+    }
+  }
+
   return (
     <nav className="navbar bg-neutral fixed top-0 w-full !px-[2.5%] left-0 z-[10] py-4 justify-between">
       <div className="">
@@ -51,7 +63,7 @@ export default function Navbar({ setTag,tag }: Props) {
               <a className="justify-between">Profile</a>
             </li>
             <li>
-              <a>Logout</a>
+              <button onClick={handleLogout}>Logout</button>
             </li>
           </ul>
         </div>

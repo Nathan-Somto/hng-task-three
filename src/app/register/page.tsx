@@ -1,5 +1,9 @@
+import Authform from "../../components/auth/AuthForm";
+
 export default function RegisterPage() {
     return (
-      <div>This is the Register page</div>
+      <main className="min-screen">
+        <Authform forRegister text='Register'/>
+      </main>
     )
   }
