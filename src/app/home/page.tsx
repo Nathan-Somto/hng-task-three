@@ -61,6 +61,7 @@ export default function HomePage() {
       activationConstraint: {
         delay: 150,
         tolerance: 5,
+        distance:10
       },
     }),
     useSensor(KeyboardSensor)

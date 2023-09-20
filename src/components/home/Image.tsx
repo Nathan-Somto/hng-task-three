@@ -49,7 +49,7 @@ export default function Image({
         data-id={index}
         draggable
         ref={setNodeRef}  {...attributes} {...listeners}
-        className={`h-full hover:scale-125 transition-all z-[6] cursor-grab ease-in-out duration-200 delay-75 w-full  max-w-full object-cover ${
+        className={`h-full hover:scale-125 transition-all touch-manipulation z-[6] cursor-grab ease-in-out duration-200 delay-75 w-full  max-w-full object-cover ${
           dragId === index ? "opacity-0" : "opacity-100"
         }`}
       />
